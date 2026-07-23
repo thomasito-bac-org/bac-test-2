@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Restore cache
         id: cache-restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: cache-dir
           key: never-matches-${{ github.run_id }}
@@ -27,7 +27,7 @@ jobs:
           echo "written-by-branch=${GITHUB_REF_NAME} actor=${GITHUB_ACTOR} run=${GITHUB_RUN_ID}" > cache-dir/marker.txt
           cat cache-dir/marker.txt
       - name: Save cache under branch-specific key
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: cache-dir
           key: shared-cache-key-${{ github.run_id }}
