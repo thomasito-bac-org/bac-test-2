@@ -1,6 +1,8 @@
 name: Caller Read Only
 on:
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   call-reusable:
-    uses: ./.github/workflows/reusable-writer.yml
+    uses: thomasito-bac-org/bac-test-2/.github/workflows/reusable-writer.yml@main
