@@ -1,0 +1,34 @@
+name: Cache Test
+on:
+  push:
+jobs:
+  cache-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restore cache
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: cache-dir
+          key: shared-cache-key-v1
+          restore-keys: |
+            shared-cache-key-
+      - name: Show what was restored (if anything)
+        run: |
+          mkdir -p cache-dir
+          if [ -f cache-dir/marker.txt ]; then
+            echo "CACHE HIT - restored content:"
+            cat cache-dir/marker.txt
+          else
+            echo "CACHE MISS - no prior content found"
+          fi
+      - name: Write new marker for this run
+        run: |
+          echo "written-by-branch=${GITHUB_REF_NAME} actor=${GITHUB_ACTOR} sha=${GITHUB_SHA}" > cache-dir/marker.txt
+          cat cache-dir/marker.txt
+      - name: Save cache
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: cache-dir
+          key: shared-cache-key-v1
