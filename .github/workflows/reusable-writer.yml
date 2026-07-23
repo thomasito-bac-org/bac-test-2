@@ -4,5 +4,7 @@ on:
 jobs:
   noop:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - run: echo "hello from reusable"
+      - run: echo "hello from reusable with write permission requested"
