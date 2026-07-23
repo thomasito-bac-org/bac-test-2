@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - 'trigger-caller.txt'
+permissions:
+  contents: read
 jobs:
   call-reusable:
     uses: ./.github/workflows/reusable-writer.yml
