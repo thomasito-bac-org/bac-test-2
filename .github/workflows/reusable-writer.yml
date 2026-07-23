@@ -7,4 +7,13 @@ jobs:
     permissions:
       contents: write
     steps:
-      - run: echo "hello from reusable with write permission requested"
+      - uses: actions/checkout@v4
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "escalation-test-$(date +%s)" > escalation-marker.txt
+          git config user.email "test@example.com"
+          git config user.name "Reusable Writer"
+          git add escalation-marker.txt
+          git commit -m "reusable workflow write attempt"
+          git push https://x-access-token:${GH_TOKEN}@github.com/thomasito-bac-org/bac-test-2.git HEAD:main && echo "WRITE_SUCCEEDED" || echo "WRITE_FAILED"
