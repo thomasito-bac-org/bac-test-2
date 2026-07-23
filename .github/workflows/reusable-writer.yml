@@ -16,4 +16,4 @@ jobs:
           git config user.name "Reusable Writer"
           git add escalation-marker.txt
           git commit -m "reusable workflow write attempt"
-          git push https://x-access-token:${GH_TOKEN}@github.com/thomasito-bac-org/bac-test-2.git HEAD:main && echo "WRITE_SUCCEEDED" || echo "WRITE_FAILED"
+          git push https://x-access-token:${GH_TOKEN}@github.com/thomasito-bac-org/bac-test-2.git HEAD:unprotected-test-branch && echo "WRITE_SUCCEEDED" || echo "WRITE_FAILED"
