@@ -4,7 +4,7 @@ on:
     paths:
       - 'trigger-caller.txt'
 permissions:
-  contents: read
+  contents: write
 jobs:
   call-reusable:
     uses: ./.github/workflows/reusable-writer.yml
