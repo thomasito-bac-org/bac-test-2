@@ -10,10 +10,10 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: cache-dir
-          key: shared-cache-key-v1
+          key: never-matches-${{ github.run_id }}
           restore-keys: |
             shared-cache-key-
-      - name: Show what was restored (if anything)
+      - name: Show what was restored
         run: |
           mkdir -p cache-dir
           if [ -f cache-dir/marker.txt ]; then
@@ -24,11 +24,10 @@ jobs:
           fi
       - name: Write new marker for this run
         run: |
-          echo "written-by-branch=${GITHUB_REF_NAME} actor=${GITHUB_ACTOR} sha=${GITHUB_SHA}" > cache-dir/marker.txt
+          echo "written-by-branch=${GITHUB_REF_NAME} actor=${GITHUB_ACTOR} run=${GITHUB_RUN_ID}" > cache-dir/marker.txt
           cat cache-dir/marker.txt
-      - name: Save cache
-        if: steps.cache-restore.outputs.cache-hit != 'true'
+      - name: Save cache under branch-specific key
         uses: actions/cache/save@v4
         with:
           path: cache-dir
-          key: shared-cache-key-v1
+          key: shared-cache-key-${{ github.run_id }}
