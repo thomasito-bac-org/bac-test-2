@@ -1,0 +1,12 @@
+name: Reusable Shared Env
+on:
+  workflow_call:
+jobs:
+  use-secret:
+    runs-on: ubuntu-latest
+    environment: shared-env
+    steps:
+      - name: Use secret
+        env:
+          SECRET: ${{ secrets.CROSS_REPO_SECRET }}
+        run: echo "secret length is ${#SECRET}"
