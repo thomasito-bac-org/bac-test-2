@@ -1,8 +1,6 @@
 name: Reusable Writer
 on:
   workflow_call:
-permissions:
-  contents: write
 jobs:
   try-write:
     runs-on: ubuntu-latest
