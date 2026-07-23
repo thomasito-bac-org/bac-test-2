@@ -1,0 +1,12 @@
+name: Deploy
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Use secret
+        run: echo "Deployed with secret length ${#DEPLOY_SECRET}"
+        env:
+          DEPLOY_SECRET: ${{ secrets.DEPLOY_SECRET }}
