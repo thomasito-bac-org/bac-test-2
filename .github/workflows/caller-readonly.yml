@@ -5,4 +5,4 @@ permissions:
   contents: read
 jobs:
   call-reusable:
-    uses: thomasito-bac-org/bac-test-2/.github/workflows/reusable-writer.yml@main
+    uses: ./.github/workflows/reusable-writer.yml
