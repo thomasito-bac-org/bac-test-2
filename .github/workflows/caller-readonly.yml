@@ -1,8 +1,6 @@
 name: Caller Read Only
 on:
   workflow_dispatch:
-permissions:
-  contents: read
 jobs:
   call-reusable:
     uses: ./.github/workflows/reusable-writer.yml
