@@ -1,9 +1,9 @@
-name: Deploy to staging
+name: Deploy to staging v2
 on:
   workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: staging
+    environment: staging-v2
     steps:
       - run: echo deployed
